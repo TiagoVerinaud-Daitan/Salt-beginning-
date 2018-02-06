@@ -1,0 +1,49 @@
+#View all keys
+
+    salt-key --list-all
+
+#Accept a specific key
+
+    salt-key --accept=<key>
+
+#Accept all keys
+
+    salt-key --accept-all
+
+#Send a Command
+
+    salt '*' test.ping
+
+#Run a Shell Command
+
+    salt '*' cmd.run 'ls -l /etc'
+
+#Show Disk Usage
+
+    salt '*' disk.usage
+    salt 'minion1' disk.usage
+    salt 'minion*' disk.usage
+
+#Install a Package
+
+    salt '*' pkg.install cowsay
+
+#List network interfaces
+
+    salt '*' network.interfaces
+
+#Ping using the Grains system
+
+    salt -G 'os:Ubuntu' test.ping
+
+#Ping with Regular Expression
+
+    salt -E 'minion[0-9]' test.ping
+
+#Ping with list
+    
+    salt -L 'minion1,minion2' test.ping
+
+#Multiple target types can be combined in one command
+
+    salt -C 'G@os:Ubuntu and minion* or S@192.168.50.*' test.ping
